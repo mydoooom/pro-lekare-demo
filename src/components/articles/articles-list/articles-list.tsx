@@ -4,7 +4,7 @@ import { ArticleItem } from '@/components/articles/article-item/article-item'
 import { graphql } from '@/graphql'
 import { Contents, ContentsQuery } from '@/graphql/graphql'
 import { useQuery } from '@tanstack/react-query'
-import request from 'graphql-request'
+import request from '@/graphql/request'
 
 
 
@@ -37,10 +37,7 @@ export function ArticlesList() {
 
   const { data: articles, isLoading, isError, error } = useQuery({
     queryKey: ['articles'],
-    queryFn: async () => request<ContentsQuery>(
-      'https://directus.devmed.cz/graphql',
-      ArticlesQuery
-    )
+    queryFn: () => request<ContentsQuery>(ArticlesQuery)
   })
 
   if (isLoading) return <p>Loading...</p>
