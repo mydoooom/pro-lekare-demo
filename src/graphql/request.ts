@@ -1,9 +1,13 @@
 import { TypedDocumentNode } from '@graphql-typed-document-node/core'
 import gqlRequest, { RequestDocument } from 'graphql-request'
 
-export default async function request<T>(document: RequestDocument | TypedDocumentNode<T, object>) {
-  return gqlRequest<T>(
+export default async function request<TData, TVariables extends object = {}>(
+  document: RequestDocument | TypedDocumentNode<TData, TVariables>,
+  variables?: TVariables
+): Promise<TData> {
+  return gqlRequest<TData>(
     'https://directus.devmed.cz/graphql',
-    document
+    document,
+    variables || {}
   )
 }

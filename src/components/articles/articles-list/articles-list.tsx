@@ -1,22 +1,23 @@
 "use client"
 
-import { ArticleItem } from '@/components/articles/article-item/article-item'
+import { ArticlesItem } from '@/components/articles/articles-item/articles-item'
 import { ContentsQuery } from '@/graphql/graphql'
 
 interface ArticlesListProps {
-  articles: ContentsQuery
+  articles: Array<ContentsQuery['contents'][number]>
 }
 
 export function ArticlesList ({articles}: ArticlesListProps) {
 
   if (!articles) return <p>Články se nepodařily načíst</p>
-  if (articles.contents.length === 0) return <p>Neexistují žádné články</p>
+  if (articles.length === 0) return <p>Neexistují žádné články</p>
 
+  console.log(articles)
   return (
     <>
-      {articles.contents.map(article => (
+      {articles.map(article => (
        <>
-         <ArticleItem key={article.id} article={article}/>
+         <ArticlesItem key={article.id} article={article}/>
          <hr/>
        </>
       ))}

@@ -4,11 +4,13 @@ import request from '@/graphql/request'
 import { ArticlesQuery } from '@/api/queries/ArticlesQuery'
 
 export default async function ArticlesPage () {
-  const articles = await request<ContentsQuery>(ArticlesQuery)
+  const articles = await request<ContentsQuery>(ArticlesQuery, {
+    language: "cs-CZ"
+  })
 
   return (
     <>
-      <ArticlesList articles={articles}/>
+      <ArticlesList articles={articles.contents}/>
     </>
   )
 }

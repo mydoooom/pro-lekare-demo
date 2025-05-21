@@ -1,7 +1,7 @@
 import { graphql } from '@/graphql'
 
 export const ArticlesQuery = graphql(/* GraphQL */ `
-    query Contents {
+    query Contents ($language: String!) {
         contents(filter: { web: { id: { _null: false } } }) {
             id
             labels {
@@ -10,7 +10,7 @@ export const ArticlesQuery = graphql(/* GraphQL */ `
                     id
                 }
             }
-            translations(filter: { language: { code: { _eq: "cs-CZ" } } }) {
+            translations(filter: { language: { code: { _eq: $language } } }) {
                 language {
                     code
                 }

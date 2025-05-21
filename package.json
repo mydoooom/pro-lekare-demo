@@ -12,6 +12,7 @@
   "dependencies": {
     "@tanstack/react-query": "^5.76.1",
     "graphql-request": "^7.1.2",
+    "html-react-parser": "^5.2.5",
     "next": "15.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
