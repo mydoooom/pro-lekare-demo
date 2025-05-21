@@ -1,3 +1,4 @@
+import { Tags } from '@/components/articles/article-item/tags'
 import { Contents, ContentsQuery } from '@/graphql/graphql'
 import { QueryResultEntity } from '../../../../types/utils'
 
@@ -6,10 +7,17 @@ interface ArticleItemProps {
 }
 
 export function ArticleItem({article}: ArticleItemProps) {
-  console.log(article)
+  if (!article.translations) {
+    return <p>This article doesn't have a translation</p>
+  }
+
+  const articleTranslation = article.translations[0]
+  const tags = article.labels?.map((label ) => label?.label?.name)
   return (
-    <>
-      <h1>{article?.translations[0].name}</h1>
-    </>
+      <div className='my-5'>
+        <Tags tags={tags}/>
+        <h1 className='font-serif font-extrabold text-2xl'>{articleTranslation?.name}</h1>
+        <p>{articleTranslation?.perex}</p>
+      </div>
   )
 }
