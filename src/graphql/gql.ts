@@ -14,9 +14,11 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
+    "\n    query Contents {\n        contents(filter: { web: { id: { _null: false } } }) {\n            id\n            labels {\n                label {\n                    name\n                    id\n                }\n            }\n            translations(filter: { language: { code: { _eq: \"cs-CZ\" } } }) {\n                language {\n                    code\n                }\n                name\n                slug\n                perex\n            }\n            web(filter: { shortcut: { _eq: \"PL\" } }) {\n                shortcut\n            }\n        }\n    }\n\n": typeof types.ContentsDocument,
     "\n      query Contents {\n          contents(filter: { web: { id: { _null: false } } }) {\n              id\n              labels {\n                  label {\n                      name\n                      id\n                  }\n              }\n              translations(filter: { language: { code: { _eq: \"cs-CZ\" } } }) {\n                  language {\n                      code\n                  }\n                  name\n                  slug\n                  perex\n              }\n              web(filter: { shortcut: { _eq: \"PL\" } }) {\n                  shortcut\n              }\n          }\n      }\n\n  ": typeof types.ContentsDocument,
 };
 const documents: Documents = {
+    "\n    query Contents {\n        contents(filter: { web: { id: { _null: false } } }) {\n            id\n            labels {\n                label {\n                    name\n                    id\n                }\n            }\n            translations(filter: { language: { code: { _eq: \"cs-CZ\" } } }) {\n                language {\n                    code\n                }\n                name\n                slug\n                perex\n            }\n            web(filter: { shortcut: { _eq: \"PL\" } }) {\n                shortcut\n            }\n        }\n    }\n\n": types.ContentsDocument,
     "\n      query Contents {\n          contents(filter: { web: { id: { _null: false } } }) {\n              id\n              labels {\n                  label {\n                      name\n                      id\n                  }\n              }\n              translations(filter: { language: { code: { _eq: \"cs-CZ\" } } }) {\n                  language {\n                      code\n                  }\n                  name\n                  slug\n                  perex\n              }\n              web(filter: { shortcut: { _eq: \"PL\" } }) {\n                  shortcut\n              }\n          }\n      }\n\n  ": types.ContentsDocument,
 };
 
@@ -34,6 +36,10 @@ const documents: Documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    query Contents {\n        contents(filter: { web: { id: { _null: false } } }) {\n            id\n            labels {\n                label {\n                    name\n                    id\n                }\n            }\n            translations(filter: { language: { code: { _eq: \"cs-CZ\" } } }) {\n                language {\n                    code\n                }\n                name\n                slug\n                perex\n            }\n            web(filter: { shortcut: { _eq: \"PL\" } }) {\n                shortcut\n            }\n        }\n    }\n\n"): (typeof documents)["\n    query Contents {\n        contents(filter: { web: { id: { _null: false } } }) {\n            id\n            labels {\n                label {\n                    name\n                    id\n                }\n            }\n            translations(filter: { language: { code: { _eq: \"cs-CZ\" } } }) {\n                language {\n                    code\n                }\n                name\n                slug\n                perex\n            }\n            web(filter: { shortcut: { _eq: \"PL\" } }) {\n                shortcut\n            }\n        }\n    }\n\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

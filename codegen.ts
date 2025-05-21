@@ -1,7 +1,7 @@
 import type { CodegenConfig } from '@graphql-codegen/cli'
 
 const config: CodegenConfig = {
-  schema: process.env.GRAPHQL_SCHEMA_URL,
+  schema: 'https://directus.devmed.cz/graphql',
   documents: ['src/**/*.tsx', 'src/**/*.ts'],
   ignoreNoDocuments: true,
   generates: {

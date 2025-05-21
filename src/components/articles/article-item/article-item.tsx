@@ -9,7 +9,7 @@ export function ArticleItem({article}: ArticleItemProps) {
   console.log(article)
   return (
     <>
-      <h1>{article.translations[0].name}</h1>
+      <h1>{article?.translations[0].name}</h1>
     </>
   )
 }

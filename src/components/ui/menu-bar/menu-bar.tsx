@@ -9,7 +9,7 @@ type MenuItem = {
   href: string
 }
 
-export async function MenuBar() {
+export function MenuBar() {
   const menuItems: MenuItem[] = [
     {
       label: 'Články',

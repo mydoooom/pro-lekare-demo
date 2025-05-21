@@ -1,39 +1,13 @@
 "use client"
 
+import { ArticlesQuery } from '@/api/queries/ArticlesQuery'
 import { ArticleItem } from '@/components/articles/article-item/article-item'
-import { graphql } from '@/graphql'
-import { Contents, ContentsQuery } from '@/graphql/graphql'
+import { ContentsQuery } from '@/graphql/graphql'
 import { useQuery } from '@tanstack/react-query'
 import request from '@/graphql/request'
 
 
-
-export function ArticlesList() {
-  const ArticlesQuery = graphql(/* GraphQL */ `
-      query Contents {
-          contents(filter: { web: { id: { _null: false } } }) {
-              id
-              labels {
-                  label {
-                      name
-                      id
-                  }
-              }
-              translations(filter: { language: { code: { _eq: "cs-CZ" } } }) {
-                  language {
-                      code
-                  }
-                  name
-                  slug
-                  perex
-              }
-              web(filter: { shortcut: { _eq: "PL" } }) {
-                  shortcut
-              }
-          }
-      }
-
-  `)
+export function ArticlesList () {
 
   const { data: articles, isLoading, isError, error } = useQuery({
     queryKey: ['articles'],
