@@ -1,25 +1,35 @@
 "use client"
 
+import { ArticlesQuery } from '@/api/queries/ArticlesQuery'
 import { ArticlesItem } from '@/components/articles/articles-item/articles-item'
 import { ContentsQuery } from '@/graphql/graphql'
+import request from '@/graphql/request'
+import { useQuery } from '@tanstack/react-query'
+import { Fragment } from 'react'
 
-interface ArticlesListProps {
-  articles: Array<ContentsQuery['contents'][number]>
-}
+// interface ArticlesListProps {
+//   articles: Array<ContentsQuery['contents'][number]>
+// }
 
-export function ArticlesList ({articles}: ArticlesListProps) {
+export function ArticlesList () {
+  const { data: articles, isLoading, isError, error } = useQuery({
+    queryKey: ['articles'],
+    queryFn: () => request<ContentsQuery>(ArticlesQuery, {
+      language: "cs-CZ"
+    })
+  })
 
-  if (!articles) return <p>Články se nepodařily načíst</p>
-  if (articles.length === 0) return <p>Neexistují žádné články</p>
+  if (isLoading) return <p>Loading...</p>
+  if (isError) return <p>Error: {error.message}</p>
+  if (!articles) return <p>Something bad happened </p>
 
-  console.log(articles)
   return (
     <>
-      {articles.map(article => (
-       <>
-         <ArticlesItem key={article.id} article={article}/>
+      {articles.contents.map(article => (
+       <Fragment key={article.id}>
+         <ArticlesItem article={article}/>
          <hr/>
-       </>
+       </Fragment>
       ))}
     </>
   )
