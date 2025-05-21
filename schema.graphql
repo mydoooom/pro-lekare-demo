@@ -1,0 +1,2274 @@
+schema {
+  query: Query
+  subscription: Subscription
+}
+
+"""ISO8601 Date values"""
+scalar Date
+
+enum EventEnum {
+  create
+  delete
+  update
+}
+
+"""A Float or a String"""
+scalar GraphQLStringOrFloat
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type Query {
+  contents(filter: contents_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents!]!
+  contents_aggregated(filter: contents_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_aggregated!]!
+  contents_by_id(id: ID!, version: String): contents
+  contents_by_version(id: ID!, version: String!): version_contents
+  contents_labels(filter: contents_labels_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_labels!]!
+  contents_labels_aggregated(filter: contents_labels_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_labels_aggregated!]!
+  contents_labels_by_id(id: ID!, version: String): contents_labels
+  contents_labels_by_version(id: ID!, version: String!): version_contents_labels
+  contents_languages(filter: contents_languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_languages!]!
+  contents_languages_aggregated(filter: contents_languages_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_languages_aggregated!]!
+  contents_languages_by_id(id: ID!, version: String): contents_languages
+  contents_languages_by_version(id: ID!, version: String!): version_contents_languages
+  contents_sections(filter: contents_sections_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_sections!]!
+  contents_sections_aggregated(filter: contents_sections_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_sections_aggregated!]!
+  contents_sections_by_id(id: ID!, version: String): contents_sections
+  contents_sections_by_version(id: ID!, version: String!): version_contents_sections
+  contents_specializations(filter: contents_specializations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_specializations!]!
+  contents_specializations_aggregated(filter: contents_specializations_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_specializations_aggregated!]!
+  contents_specializations_by_id(id: ID!, version: String): contents_specializations
+  contents_specializations_by_version(id: ID!, version: String!): version_contents_specializations
+  contents_translations(filter: contents_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_translations!]!
+  contents_translations_aggregated(filter: contents_translations_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_translations_aggregated!]!
+  contents_translations_by_id(id: ID!, version: String): contents_translations
+  contents_translations_by_version(id: ID!, version: String!): version_contents_translations
+  contents_users(filter: contents_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_users!]!
+  contents_users_aggregated(filter: contents_users_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_users_aggregated!]!
+  contents_users_by_id(id: ID!, version: String): contents_users
+  contents_users_by_version(id: ID!, version: String!): version_contents_users
+  contents_webs(filter: contents_webs_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_webs!]!
+  contents_webs_aggregated(filter: contents_webs_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_webs_aggregated!]!
+  contents_webs_by_id(id: ID!, version: String): contents_webs
+  contents_webs_by_version(id: ID!, version: String!): version_contents_webs
+  countries(filter: countries_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [countries!]!
+  countries_aggregated(filter: countries_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [countries_aggregated!]!
+  countries_by_id(id: ID!, version: String): countries
+  countries_by_version(id: ID!, version: String!): version_countries
+  issues(filter: issues_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [issues!]!
+  issues_aggregated(filter: issues_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [issues_aggregated!]!
+  issues_by_id(id: ID!, version: String): issues
+  issues_by_version(id: ID!, version: String!): version_issues
+  issues_translations(filter: issues_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [issues_translations!]!
+  issues_translations_aggregated(filter: issues_translations_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [issues_translations_aggregated!]!
+  issues_translations_by_id(id: ID!, version: String): issues_translations
+  issues_translations_by_version(id: ID!, version: String!): version_issues_translations
+  journals(filter: journals_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [journals!]!
+  journals_aggregated(filter: journals_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [journals_aggregated!]!
+  journals_by_id(id: ID!, version: String): journals
+  journals_by_version(id: ID!, version: String!): version_journals
+  journals_languages(filter: journals_languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [journals_languages!]!
+  journals_languages_aggregated(filter: journals_languages_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [journals_languages_aggregated!]!
+  journals_languages_by_id(id: ID!, version: String): journals_languages
+  journals_languages_by_version(id: ID!, version: String!): version_journals_languages
+  journals_translations(filter: journals_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [journals_translations!]!
+  journals_translations_aggregated(filter: journals_translations_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [journals_translations_aggregated!]!
+  journals_translations_by_id(id: ID!, version: String): journals_translations
+  journals_translations_by_version(id: ID!, version: String!): version_journals_translations
+  labels(filter: labels_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [labels!]!
+  labels_aggregated(filter: labels_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [labels_aggregated!]!
+  labels_by_id(id: ID!, version: String): labels
+  labels_by_version(id: ID!, version: String!): version_labels
+  labels_translations(filter: labels_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [labels_translations!]!
+  labels_translations_aggregated(filter: labels_translations_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [labels_translations_aggregated!]!
+  labels_translations_by_id(id: ID!, version: String): labels_translations
+  labels_translations_by_version(id: ID!, version: String!): version_labels_translations
+  languages(filter: languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [languages!]!
+  languages_aggregated(filter: languages_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [languages_aggregated!]!
+  languages_by_id(id: ID!, version: String): languages
+  languages_by_version(id: ID!, version: String!): version_languages
+  pages(filter: pages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [pages!]!
+  pages_aggregated(filter: pages_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [pages_aggregated!]!
+  pages_by_id(id: ID!, version: String): pages
+  pages_by_version(id: ID!, version: String!): version_pages
+  partners(filter: partners_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [partners!]!
+  partners_aggregated(filter: partners_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [partners_aggregated!]!
+  partners_by_id(id: ID!, version: String): partners
+  partners_by_version(id: ID!, version: String!): version_partners
+  sections(filter: sections_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [sections!]!
+  sections_aggregated(filter: sections_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [sections_aggregated!]!
+  sections_by_id(id: ID!, version: String): sections
+  sections_by_version(id: ID!, version: String!): version_sections
+  sections_translations(filter: sections_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [sections_translations!]!
+  sections_translations_aggregated(filter: sections_translations_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [sections_translations_aggregated!]!
+  sections_translations_by_id(id: ID!, version: String): sections_translations
+  sections_translations_by_version(id: ID!, version: String!): version_sections_translations
+  slots(filter: slots_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [slots!]!
+  slots_aggregated(filter: slots_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [slots_aggregated!]!
+  slots_by_id(id: ID!, version: String): slots
+  slots_by_version(id: ID!, version: String!): version_slots
+  specializations(filter: specializations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [specializations!]!
+  specializations_aggregated(filter: specializations_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [specializations_aggregated!]!
+  specializations_by_id(id: ID!, version: String): specializations
+  specializations_by_version(id: ID!, version: String!): version_specializations
+  specializations_translations(filter: specializations_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [specializations_translations!]!
+  specializations_translations_aggregated(filter: specializations_translations_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [specializations_translations_aggregated!]!
+  specializations_translations_by_id(id: ID!, version: String): specializations_translations
+  specializations_translations_by_version(id: ID!, version: String!): version_specializations_translations
+  themes(filter: themes_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [themes!]!
+  themes_aggregated(filter: themes_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [themes_aggregated!]!
+  themes_by_id(id: ID!, version: String): themes
+  themes_by_version(id: ID!, version: String!): version_themes
+  themes_partners(filter: themes_partners_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [themes_partners!]!
+  themes_partners_aggregated(filter: themes_partners_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [themes_partners_aggregated!]!
+  themes_partners_by_id(id: ID!, version: String): themes_partners
+  themes_partners_by_version(id: ID!, version: String!): version_themes_partners
+  themes_translations(filter: themes_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [themes_translations!]!
+  themes_translations_aggregated(filter: themes_translations_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [themes_translations_aggregated!]!
+  themes_translations_by_id(id: ID!, version: String): themes_translations
+  themes_translations_by_version(id: ID!, version: String!): version_themes_translations
+  themes_translations_partners(filter: themes_translations_partners_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [themes_translations_partners!]!
+  themes_translations_partners_aggregated(filter: themes_translations_partners_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [themes_translations_partners_aggregated!]!
+  themes_translations_partners_by_id(id: ID!, version: String): themes_translations_partners
+  themes_translations_partners_by_version(id: ID!, version: String!): version_themes_translations_partners
+  types(filter: types_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [types!]!
+  types_aggregated(filter: types_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [types_aggregated!]!
+  types_by_id(id: ID!, version: String): types
+  types_by_version(id: ID!, version: String!): version_types
+  types_translations(filter: types_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [types_translations!]!
+  types_translations_aggregated(filter: types_translations_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [types_translations_aggregated!]!
+  types_translations_by_id(id: ID!, version: String): types_translations
+  types_translations_by_version(id: ID!, version: String!): version_types_translations
+  webs(filter: webs_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [webs!]!
+  webs_aggregated(filter: webs_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [webs_aggregated!]!
+  webs_by_id(id: ID!, version: String): webs
+  webs_by_version(id: ID!, version: String!): version_webs
+  webs_domains(filter: webs_domains_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [webs_domains!]!
+  webs_domains_aggregated(filter: webs_domains_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [webs_domains_aggregated!]!
+  webs_domains_by_id(id: ID!, version: String): webs_domains
+  webs_domains_by_version(id: ID!, version: String!): version_webs_domains
+}
+
+type Subscription {
+  contents_labels_mutated(event: EventEnum): contents_labels_mutated
+  contents_languages_mutated(event: EventEnum): contents_languages_mutated
+  contents_mutated(event: EventEnum): contents_mutated
+  contents_sections_mutated(event: EventEnum): contents_sections_mutated
+  contents_specializations_mutated(event: EventEnum): contents_specializations_mutated
+  contents_translations_mutated(event: EventEnum): contents_translations_mutated
+  contents_users_mutated(event: EventEnum): contents_users_mutated
+  contents_webs_mutated(event: EventEnum): contents_webs_mutated
+  countries_mutated(event: EventEnum): countries_mutated
+  directus_files_mutated(event: EventEnum): directus_files_mutated
+  issues_mutated(event: EventEnum): issues_mutated
+  issues_translations_mutated(event: EventEnum): issues_translations_mutated
+  journals_languages_mutated(event: EventEnum): journals_languages_mutated
+  journals_mutated(event: EventEnum): journals_mutated
+  journals_translations_mutated(event: EventEnum): journals_translations_mutated
+  labels_mutated(event: EventEnum): labels_mutated
+  labels_translations_mutated(event: EventEnum): labels_translations_mutated
+  languages_mutated(event: EventEnum): languages_mutated
+  pages_mutated(event: EventEnum): pages_mutated
+  partners_mutated(event: EventEnum): partners_mutated
+  sections_mutated(event: EventEnum): sections_mutated
+  sections_translations_mutated(event: EventEnum): sections_translations_mutated
+  slots_mutated(event: EventEnum): slots_mutated
+  specializations_mutated(event: EventEnum): specializations_mutated
+  specializations_translations_mutated(event: EventEnum): specializations_translations_mutated
+  themes_mutated(event: EventEnum): themes_mutated
+  themes_partners_mutated(event: EventEnum): themes_partners_mutated
+  themes_translations_mutated(event: EventEnum): themes_translations_mutated
+  themes_translations_partners_mutated(event: EventEnum): themes_translations_partners_mutated
+  types_mutated(event: EventEnum): types_mutated
+  types_translations_mutated(event: EventEnum): types_translations_mutated
+  webs_domains_mutated(event: EventEnum): webs_domains_mutated
+  webs_mutated(event: EventEnum): webs_mutated
+}
+
+type contents {
+  children(filter: contents_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents]
+  children_func: count_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  feedbacks: String
+  feedbacks_func: count_functions
+  id: ID!
+  issue: String
+  labels(filter: contents_labels_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_labels]
+  labels_func: count_functions
+  language(filter: languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): languages
+  languages(filter: contents_languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_languages]
+  languages_func: count_functions
+  parent(filter: contents_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): contents
+  partner(filter: partners_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): partners
+  public_from: Date
+  public_from_func: datetime_functions
+  public_till: Date
+  public_till_func: datetime_functions
+  section(filter: sections_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): sections
+  sections(filter: contents_sections_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_sections]
+  sections_func: count_functions
+  specializations(filter: contents_specializations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_specializations]
+  specializations_func: count_functions
+  status: String
+  theme(filter: themes_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): themes
+  translations(filter: contents_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_translations]
+  translations_func: count_functions
+  type(filter: types_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): types
+  user_updated: String
+  users(filter: contents_users_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_users]
+  users_func: count_functions
+  web(filter: webs_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): webs
+  webs(filter: contents_webs_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [contents_webs]
+  webs_func: count_functions
+}
+
+type contents_aggregated {
+  count: contents_aggregated_count
+  countAll: Int
+  countDistinct: contents_aggregated_count
+  group: JSON
+}
+
+type contents_aggregated_count {
+  children: Int
+  date_updated: Int
+  feedbacks: Int
+  id: Int
+  issue: Int
+  labels: Int
+  language: Int
+  languages: Int
+  parent: Int
+  partner: Int
+  public_from: Int
+  public_till: Int
+  section: Int
+  sections: Int
+  specializations: Int
+  status: Int
+  theme: Int
+  translations: Int
+  type: Int
+  user_updated: Int
+  users: Int
+  web: Int
+  webs: Int
+}
+
+input contents_filter {
+  _and: [contents_filter]
+  _or: [contents_filter]
+  children: contents_filter
+  children_func: count_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  feedbacks: string_filter_operators
+  feedbacks_func: count_function_filter_operators
+  id: string_filter_operators
+  issue: string_filter_operators
+  labels: contents_labels_filter
+  labels_func: count_function_filter_operators
+  language: languages_filter
+  languages: contents_languages_filter
+  languages_func: count_function_filter_operators
+  parent: contents_filter
+  partner: partners_filter
+  public_from: date_filter_operators
+  public_from_func: datetime_function_filter_operators
+  public_till: date_filter_operators
+  public_till_func: datetime_function_filter_operators
+  section: sections_filter
+  sections: contents_sections_filter
+  sections_func: count_function_filter_operators
+  specializations: contents_specializations_filter
+  specializations_func: count_function_filter_operators
+  status: string_filter_operators
+  theme: themes_filter
+  translations: contents_translations_filter
+  translations_func: count_function_filter_operators
+  type: types_filter
+  user_updated: string_filter_operators
+  users: contents_users_filter
+  users_func: count_function_filter_operators
+  web: webs_filter
+  webs: contents_webs_filter
+  webs_func: count_function_filter_operators
+}
+
+type contents_labels {
+  content(filter: contents_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): contents
+  id: ID!
+  label(filter: labels_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): labels
+}
+
+type contents_labels_aggregated {
+  count: contents_labels_aggregated_count
+  countAll: Int
+  countDistinct: contents_labels_aggregated_count
+  group: JSON
+}
+
+type contents_labels_aggregated_count {
+  content: Int
+  id: Int
+  label: Int
+}
+
+input contents_labels_filter {
+  _and: [contents_labels_filter]
+  _or: [contents_labels_filter]
+  content: contents_filter
+  id: string_filter_operators
+  label: labels_filter
+}
+
+type contents_labels_mutated {
+  data: contents_labels
+  event: EventEnum
+  key: ID!
+}
+
+type contents_languages {
+  content(filter: contents_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): contents
+  id: ID!
+  language(filter: languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): languages
+}
+
+type contents_languages_aggregated {
+  avg: contents_languages_aggregated_fields
+  avgDistinct: contents_languages_aggregated_fields
+  count: contents_languages_aggregated_count
+  countAll: Int
+  countDistinct: contents_languages_aggregated_count
+  group: JSON
+  max: contents_languages_aggregated_fields
+  min: contents_languages_aggregated_fields
+  sum: contents_languages_aggregated_fields
+  sumDistinct: contents_languages_aggregated_fields
+}
+
+type contents_languages_aggregated_count {
+  content: Int
+  id: Int
+  language: Int
+}
+
+type contents_languages_aggregated_fields {
+  id: Float
+}
+
+input contents_languages_filter {
+  _and: [contents_languages_filter]
+  _or: [contents_languages_filter]
+  content: contents_filter
+  id: number_filter_operators
+  language: languages_filter
+}
+
+type contents_languages_mutated {
+  data: contents_languages
+  event: EventEnum
+  key: ID!
+}
+
+type contents_mutated {
+  data: contents
+  event: EventEnum
+  key: ID!
+}
+
+type contents_sections {
+  content(filter: contents_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): contents
+  id: ID!
+  section(filter: sections_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): sections
+}
+
+type contents_sections_aggregated {
+  count: contents_sections_aggregated_count
+  countAll: Int
+  countDistinct: contents_sections_aggregated_count
+  group: JSON
+}
+
+type contents_sections_aggregated_count {
+  content: Int
+  id: Int
+  section: Int
+}
+
+input contents_sections_filter {
+  _and: [contents_sections_filter]
+  _or: [contents_sections_filter]
+  content: contents_filter
+  id: string_filter_operators
+  section: sections_filter
+}
+
+type contents_sections_mutated {
+  data: contents_sections
+  event: EventEnum
+  key: ID!
+}
+
+type contents_specializations {
+  content(filter: contents_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): contents
+  id: ID!
+  specialization(filter: specializations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): specializations
+}
+
+type contents_specializations_aggregated {
+  avg: contents_specializations_aggregated_fields
+  avgDistinct: contents_specializations_aggregated_fields
+  count: contents_specializations_aggregated_count
+  countAll: Int
+  countDistinct: contents_specializations_aggregated_count
+  group: JSON
+  max: contents_specializations_aggregated_fields
+  min: contents_specializations_aggregated_fields
+  sum: contents_specializations_aggregated_fields
+  sumDistinct: contents_specializations_aggregated_fields
+}
+
+type contents_specializations_aggregated_count {
+  content: Int
+  id: Int
+  specialization: Int
+}
+
+type contents_specializations_aggregated_fields {
+  id: Float
+}
+
+input contents_specializations_filter {
+  _and: [contents_specializations_filter]
+  _or: [contents_specializations_filter]
+  content: contents_filter
+  id: number_filter_operators
+  specialization: specializations_filter
+}
+
+type contents_specializations_mutated {
+  data: contents_specializations
+  event: EventEnum
+  key: ID!
+}
+
+type contents_translations {
+  content: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  image(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+  language(filter: languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): languages
+  name: String!
+  object(filter: contents_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): contents
+  perex: String
+  slug: String
+}
+
+type contents_translations_aggregated {
+  count: contents_translations_aggregated_count
+  countAll: Int
+  countDistinct: contents_translations_aggregated_count
+  group: JSON
+}
+
+type contents_translations_aggregated_count {
+  content: Int
+  date_created: Int
+  date_updated: Int
+  id: Int
+  image: Int
+  language: Int
+  name: Int
+  object: Int
+  perex: Int
+  slug: Int
+}
+
+input contents_translations_filter {
+  _and: [contents_translations_filter]
+  _or: [contents_translations_filter]
+  content: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  id: string_filter_operators
+  image: directus_files_filter
+  language: languages_filter
+  name: string_filter_operators
+  object: contents_filter
+  perex: string_filter_operators
+  slug: string_filter_operators
+}
+
+type contents_translations_mutated {
+  data: contents_translations
+  event: EventEnum
+  key: ID!
+}
+
+type contents_users {
+  content(filter: contents_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): contents
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  sort: Int
+  status: String
+  user_created: String
+  user_updated: String
+}
+
+type contents_users_aggregated {
+  avg: contents_users_aggregated_fields
+  avgDistinct: contents_users_aggregated_fields
+  count: contents_users_aggregated_count
+  countAll: Int
+  countDistinct: contents_users_aggregated_count
+  group: JSON
+  max: contents_users_aggregated_fields
+  min: contents_users_aggregated_fields
+  sum: contents_users_aggregated_fields
+  sumDistinct: contents_users_aggregated_fields
+}
+
+type contents_users_aggregated_count {
+  content: Int
+  date_created: Int
+  date_updated: Int
+  id: Int
+  sort: Int
+  status: Int
+  user_created: Int
+  user_updated: Int
+}
+
+type contents_users_aggregated_fields {
+  sort: Float
+}
+
+input contents_users_filter {
+  _and: [contents_users_filter]
+  _or: [contents_users_filter]
+  content: contents_filter
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  id: string_filter_operators
+  sort: number_filter_operators
+  status: string_filter_operators
+  user_created: string_filter_operators
+  user_updated: string_filter_operators
+}
+
+type contents_users_mutated {
+  data: contents_users
+  event: EventEnum
+  key: ID!
+}
+
+type contents_webs {
+  content(filter: contents_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): contents
+  id: ID!
+  web(filter: webs_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): webs
+}
+
+type contents_webs_aggregated {
+  avg: contents_webs_aggregated_fields
+  avgDistinct: contents_webs_aggregated_fields
+  count: contents_webs_aggregated_count
+  countAll: Int
+  countDistinct: contents_webs_aggregated_count
+  group: JSON
+  max: contents_webs_aggregated_fields
+  min: contents_webs_aggregated_fields
+  sum: contents_webs_aggregated_fields
+  sumDistinct: contents_webs_aggregated_fields
+}
+
+type contents_webs_aggregated_count {
+  content: Int
+  id: Int
+  web: Int
+}
+
+type contents_webs_aggregated_fields {
+  id: Float
+}
+
+input contents_webs_filter {
+  _and: [contents_webs_filter]
+  _or: [contents_webs_filter]
+  content: contents_filter
+  id: number_filter_operators
+  web: webs_filter
+}
+
+type contents_webs_mutated {
+  data: contents_webs
+  event: EventEnum
+  key: ID!
+}
+
+input count_function_filter_operators {
+  count: number_filter_operators
+}
+
+type count_functions {
+  count: Int
+}
+
+type countries {
+  code: ID!
+  code3: String!
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  name: String!
+}
+
+type countries_aggregated {
+  count: countries_aggregated_count
+  countAll: Int
+  countDistinct: countries_aggregated_count
+  group: JSON
+}
+
+type countries_aggregated_count {
+  code: Int
+  code3: Int
+  date_created: Int
+  date_updated: Int
+  name: Int
+}
+
+input countries_filter {
+  _and: [countries_filter]
+  _or: [countries_filter]
+  code: string_filter_operators
+  code3: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  name: string_filter_operators
+}
+
+type countries_mutated {
+  data: countries
+  event: EventEnum
+  key: ID!
+}
+
+input date_filter_operators {
+  _between: [GraphQLStringOrFloat]
+  _eq: String
+  _gt: String
+  _gte: String
+  _in: [String]
+  _lt: String
+  _lte: String
+  _nbetween: [GraphQLStringOrFloat]
+  _neq: String
+  _nin: [String]
+  _nnull: Boolean
+  _null: Boolean
+}
+
+input datetime_function_filter_operators {
+  day: number_filter_operators
+  hour: number_filter_operators
+  minute: number_filter_operators
+  month: number_filter_operators
+  second: number_filter_operators
+  week: number_filter_operators
+  weekday: number_filter_operators
+  year: number_filter_operators
+}
+
+type datetime_functions {
+  day: Int
+  hour: Int
+  minute: Int
+  month: Int
+  second: Int
+  week: Int
+  weekday: Int
+  year: Int
+}
+
+type directus_files {
+  filename_disk: String
+  filename_download: String!
+  folder: String
+  height: Int
+  id: ID!
+  width: Int
+}
+
+input directus_files_filter {
+  _and: [directus_files_filter]
+  _or: [directus_files_filter]
+  filename_disk: string_filter_operators
+  filename_download: string_filter_operators
+  folder: string_filter_operators
+  height: number_filter_operators
+  id: string_filter_operators
+  width: number_filter_operators
+}
+
+type directus_files_mutated {
+  data: directus_files
+  event: EventEnum
+  key: ID!
+}
+
+type issues {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  issue: String
+  journal(filter: journals_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): journals
+  options: JSON
+  options_func: count_functions
+  translations(filter: issues_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [issues_translations]
+  translations_func: count_functions
+  volume: String
+  year: Int
+}
+
+type issues_aggregated {
+  avg: issues_aggregated_fields
+  avgDistinct: issues_aggregated_fields
+  count: issues_aggregated_count
+  countAll: Int
+  countDistinct: issues_aggregated_count
+  group: JSON
+  max: issues_aggregated_fields
+  min: issues_aggregated_fields
+  sum: issues_aggregated_fields
+  sumDistinct: issues_aggregated_fields
+}
+
+type issues_aggregated_count {
+  date_created: Int
+  date_updated: Int
+  id: Int
+  issue: Int
+  journal: Int
+  options: Int
+  translations: Int
+  volume: Int
+  year: Int
+}
+
+type issues_aggregated_fields {
+  year: Float
+}
+
+input issues_filter {
+  _and: [issues_filter]
+  _or: [issues_filter]
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  id: string_filter_operators
+  issue: string_filter_operators
+  journal: journals_filter
+  options: string_filter_operators
+  options_func: count_function_filter_operators
+  translations: issues_translations_filter
+  translations_func: count_function_filter_operators
+  volume: string_filter_operators
+  year: number_filter_operators
+}
+
+type issues_mutated {
+  data: issues
+  event: EventEnum
+  key: ID!
+}
+
+type issues_translations {
+  id: ID!
+  language(filter: languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): languages
+  object(filter: issues_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): issues
+}
+
+type issues_translations_aggregated {
+  avg: issues_translations_aggregated_fields
+  avgDistinct: issues_translations_aggregated_fields
+  count: issues_translations_aggregated_count
+  countAll: Int
+  countDistinct: issues_translations_aggregated_count
+  group: JSON
+  max: issues_translations_aggregated_fields
+  min: issues_translations_aggregated_fields
+  sum: issues_translations_aggregated_fields
+  sumDistinct: issues_translations_aggregated_fields
+}
+
+type issues_translations_aggregated_count {
+  id: Int
+  language: Int
+  object: Int
+}
+
+type issues_translations_aggregated_fields {
+  id: Float
+}
+
+input issues_translations_filter {
+  _and: [issues_translations_filter]
+  _or: [issues_translations_filter]
+  id: number_filter_operators
+  language: languages_filter
+  object: issues_filter
+}
+
+type issues_translations_mutated {
+  data: issues_translations
+  event: EventEnum
+  key: ID!
+}
+
+type journals {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  issn: String
+  language(filter: languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): languages
+  languages(filter: journals_languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [journals_languages]
+  languages_func: count_functions
+  options: JSON
+  options_func: count_functions
+  pubmed_name: String
+  shortcut: String!
+  status: String
+  translations(filter: journals_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [journals_translations]
+  translations_func: count_functions
+}
+
+type journals_aggregated {
+  count: journals_aggregated_count
+  countAll: Int
+  countDistinct: journals_aggregated_count
+  group: JSON
+}
+
+type journals_aggregated_count {
+  date_created: Int
+  date_updated: Int
+  id: Int
+  issn: Int
+  language: Int
+  languages: Int
+  options: Int
+  pubmed_name: Int
+  shortcut: Int
+  status: Int
+  translations: Int
+}
+
+input journals_filter {
+  _and: [journals_filter]
+  _or: [journals_filter]
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  id: string_filter_operators
+  issn: string_filter_operators
+  language: languages_filter
+  languages: journals_languages_filter
+  languages_func: count_function_filter_operators
+  options: string_filter_operators
+  options_func: count_function_filter_operators
+  pubmed_name: string_filter_operators
+  shortcut: string_filter_operators
+  status: string_filter_operators
+  translations: journals_translations_filter
+  translations_func: count_function_filter_operators
+}
+
+type journals_languages {
+  id: ID!
+  language(filter: languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): languages
+  object(filter: journals_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): journals
+}
+
+type journals_languages_aggregated {
+  avg: journals_languages_aggregated_fields
+  avgDistinct: journals_languages_aggregated_fields
+  count: journals_languages_aggregated_count
+  countAll: Int
+  countDistinct: journals_languages_aggregated_count
+  group: JSON
+  max: journals_languages_aggregated_fields
+  min: journals_languages_aggregated_fields
+  sum: journals_languages_aggregated_fields
+  sumDistinct: journals_languages_aggregated_fields
+}
+
+type journals_languages_aggregated_count {
+  id: Int
+  language: Int
+  object: Int
+}
+
+type journals_languages_aggregated_fields {
+  id: Float
+}
+
+input journals_languages_filter {
+  _and: [journals_languages_filter]
+  _or: [journals_languages_filter]
+  id: number_filter_operators
+  language: languages_filter
+  object: journals_filter
+}
+
+type journals_languages_mutated {
+  data: journals_languages
+  event: EventEnum
+  key: ID!
+}
+
+type journals_mutated {
+  data: journals
+  event: EventEnum
+  key: ID!
+}
+
+type journals_translations {
+  id: ID!
+  language(filter: languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): languages
+  name: String
+  object(filter: journals_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): journals
+  slug: String
+}
+
+type journals_translations_aggregated {
+  avg: journals_translations_aggregated_fields
+  avgDistinct: journals_translations_aggregated_fields
+  count: journals_translations_aggregated_count
+  countAll: Int
+  countDistinct: journals_translations_aggregated_count
+  group: JSON
+  max: journals_translations_aggregated_fields
+  min: journals_translations_aggregated_fields
+  sum: journals_translations_aggregated_fields
+  sumDistinct: journals_translations_aggregated_fields
+}
+
+type journals_translations_aggregated_count {
+  id: Int
+  language: Int
+  name: Int
+  object: Int
+  slug: Int
+}
+
+type journals_translations_aggregated_fields {
+  id: Float
+}
+
+input journals_translations_filter {
+  _and: [journals_translations_filter]
+  _or: [journals_translations_filter]
+  id: number_filter_operators
+  language: languages_filter
+  name: string_filter_operators
+  object: journals_filter
+  slug: string_filter_operators
+}
+
+type journals_translations_mutated {
+  data: journals_translations
+  event: EventEnum
+  key: ID!
+}
+
+type labels {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  name: String
+  translations(filter: labels_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [labels_translations]
+  translations_func: count_functions
+}
+
+type labels_aggregated {
+  count: labels_aggregated_count
+  countAll: Int
+  countDistinct: labels_aggregated_count
+  group: JSON
+}
+
+type labels_aggregated_count {
+  date_created: Int
+  date_updated: Int
+  id: Int
+  name: Int
+  translations: Int
+}
+
+input labels_filter {
+  _and: [labels_filter]
+  _or: [labels_filter]
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  id: string_filter_operators
+  name: string_filter_operators
+  translations: labels_translations_filter
+  translations_func: count_function_filter_operators
+}
+
+type labels_mutated {
+  data: labels
+  event: EventEnum
+  key: ID!
+}
+
+type labels_translations {
+  id: ID!
+  language(filter: languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): languages
+  name: String
+  object(filter: labels_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): labels
+}
+
+type labels_translations_aggregated {
+  avg: labels_translations_aggregated_fields
+  avgDistinct: labels_translations_aggregated_fields
+  count: labels_translations_aggregated_count
+  countAll: Int
+  countDistinct: labels_translations_aggregated_count
+  group: JSON
+  max: labels_translations_aggregated_fields
+  min: labels_translations_aggregated_fields
+  sum: labels_translations_aggregated_fields
+  sumDistinct: labels_translations_aggregated_fields
+}
+
+type labels_translations_aggregated_count {
+  id: Int
+  language: Int
+  name: Int
+  object: Int
+}
+
+type labels_translations_aggregated_fields {
+  id: Float
+}
+
+input labels_translations_filter {
+  _and: [labels_translations_filter]
+  _or: [labels_translations_filter]
+  id: number_filter_operators
+  language: languages_filter
+  name: string_filter_operators
+  object: labels_filter
+}
+
+type labels_translations_mutated {
+  data: labels_translations
+  event: EventEnum
+  key: ID!
+}
+
+type languages {
+  code: ID!
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  direction: String
+  name: String
+}
+
+type languages_aggregated {
+  count: languages_aggregated_count
+  countAll: Int
+  countDistinct: languages_aggregated_count
+  group: JSON
+}
+
+type languages_aggregated_count {
+  code: Int
+  date_created: Int
+  date_updated: Int
+  direction: Int
+  name: Int
+}
+
+input languages_filter {
+  _and: [languages_filter]
+  _or: [languages_filter]
+  code: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  direction: string_filter_operators
+  name: string_filter_operators
+}
+
+type languages_mutated {
+  data: languages
+  event: EventEnum
+  key: ID!
+}
+
+input number_filter_operators {
+  _between: [GraphQLStringOrFloat]
+  _eq: GraphQLStringOrFloat
+  _gt: GraphQLStringOrFloat
+  _gte: GraphQLStringOrFloat
+  _in: [GraphQLStringOrFloat]
+  _lt: GraphQLStringOrFloat
+  _lte: GraphQLStringOrFloat
+  _nbetween: [GraphQLStringOrFloat]
+  _neq: GraphQLStringOrFloat
+  _nin: [GraphQLStringOrFloat]
+  _nnull: Boolean
+  _null: Boolean
+}
+
+type pages {
+  code: String!
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  language(filter: languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): languages
+  layout: String
+  name: String!
+  path: String!
+  web(filter: webs_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): webs
+}
+
+type pages_aggregated {
+  count: pages_aggregated_count
+  countAll: Int
+  countDistinct: pages_aggregated_count
+  group: JSON
+}
+
+type pages_aggregated_count {
+  code: Int
+  date_created: Int
+  date_updated: Int
+  id: Int
+  language: Int
+  layout: Int
+  name: Int
+  path: Int
+  web: Int
+}
+
+input pages_filter {
+  _and: [pages_filter]
+  _or: [pages_filter]
+  code: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  id: string_filter_operators
+  language: languages_filter
+  layout: string_filter_operators
+  name: string_filter_operators
+  path: string_filter_operators
+  web: webs_filter
+}
+
+type pages_mutated {
+  data: pages
+  event: EventEnum
+  key: ID!
+}
+
+type partners {
+  banner(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  logo(filter: directus_files_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): directus_files
+  name: String
+  url: String
+}
+
+type partners_aggregated {
+  count: partners_aggregated_count
+  countAll: Int
+  countDistinct: partners_aggregated_count
+  group: JSON
+}
+
+type partners_aggregated_count {
+  banner: Int
+  date_created: Int
+  date_updated: Int
+  id: Int
+  logo: Int
+  name: Int
+  url: Int
+}
+
+input partners_filter {
+  _and: [partners_filter]
+  _or: [partners_filter]
+  banner: directus_files_filter
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  id: string_filter_operators
+  logo: directus_files_filter
+  name: string_filter_operators
+  url: string_filter_operators
+}
+
+type partners_mutated {
+  data: partners
+  event: EventEnum
+  key: ID!
+}
+
+type sections {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  name: String
+  translations(filter: sections_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [sections_translations]
+  translations_func: count_functions
+}
+
+type sections_aggregated {
+  count: sections_aggregated_count
+  countAll: Int
+  countDistinct: sections_aggregated_count
+  group: JSON
+}
+
+type sections_aggregated_count {
+  date_created: Int
+  date_updated: Int
+  id: Int
+  name: Int
+  translations: Int
+}
+
+input sections_filter {
+  _and: [sections_filter]
+  _or: [sections_filter]
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  id: string_filter_operators
+  name: string_filter_operators
+  translations: sections_translations_filter
+  translations_func: count_function_filter_operators
+}
+
+type sections_mutated {
+  data: sections
+  event: EventEnum
+  key: ID!
+}
+
+type sections_translations {
+  id: ID!
+  language(filter: languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): languages
+  name: String
+  object(filter: sections_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): sections
+}
+
+type sections_translations_aggregated {
+  avg: sections_translations_aggregated_fields
+  avgDistinct: sections_translations_aggregated_fields
+  count: sections_translations_aggregated_count
+  countAll: Int
+  countDistinct: sections_translations_aggregated_count
+  group: JSON
+  max: sections_translations_aggregated_fields
+  min: sections_translations_aggregated_fields
+  sum: sections_translations_aggregated_fields
+  sumDistinct: sections_translations_aggregated_fields
+}
+
+type sections_translations_aggregated_count {
+  id: Int
+  language: Int
+  name: Int
+  object: Int
+}
+
+type sections_translations_aggregated_fields {
+  id: Float
+}
+
+input sections_translations_filter {
+  _and: [sections_translations_filter]
+  _or: [sections_translations_filter]
+  id: number_filter_operators
+  language: languages_filter
+  name: string_filter_operators
+  object: sections_filter
+}
+
+type sections_translations_mutated {
+  data: sections_translations
+  event: EventEnum
+  key: ID!
+}
+
+type slots {
+  adm_id: String!
+  adm_slot: String!
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  dimensions: JSON
+  dimensions_func: count_functions
+  id: ID!
+}
+
+type slots_aggregated {
+  count: slots_aggregated_count
+  countAll: Int
+  countDistinct: slots_aggregated_count
+  group: JSON
+}
+
+type slots_aggregated_count {
+  adm_id: Int
+  adm_slot: Int
+  date_created: Int
+  date_updated: Int
+  dimensions: Int
+  id: Int
+}
+
+input slots_filter {
+  _and: [slots_filter]
+  _or: [slots_filter]
+  adm_id: string_filter_operators
+  adm_slot: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  dimensions: string_filter_operators
+  dimensions_func: count_function_filter_operators
+  id: string_filter_operators
+}
+
+type slots_mutated {
+  data: slots
+  event: EventEnum
+  key: ID!
+}
+
+type specializations {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  group: String
+  id: ID!
+  name: String!
+  translations(filter: specializations_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [specializations_translations]
+  translations_func: count_functions
+}
+
+type specializations_aggregated {
+  count: specializations_aggregated_count
+  countAll: Int
+  countDistinct: specializations_aggregated_count
+  group: JSON
+}
+
+type specializations_aggregated_count {
+  date_created: Int
+  date_updated: Int
+  group: Int
+  id: Int
+  name: Int
+  translations: Int
+}
+
+input specializations_filter {
+  _and: [specializations_filter]
+  _or: [specializations_filter]
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  group: string_filter_operators
+  id: string_filter_operators
+  name: string_filter_operators
+  translations: specializations_translations_filter
+  translations_func: count_function_filter_operators
+}
+
+type specializations_mutated {
+  data: specializations
+  event: EventEnum
+  key: ID!
+}
+
+type specializations_translations {
+  id: ID!
+  language(filter: languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): languages
+  name: String
+  object(filter: specializations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): specializations
+}
+
+type specializations_translations_aggregated {
+  avg: specializations_translations_aggregated_fields
+  avgDistinct: specializations_translations_aggregated_fields
+  count: specializations_translations_aggregated_count
+  countAll: Int
+  countDistinct: specializations_translations_aggregated_count
+  group: JSON
+  max: specializations_translations_aggregated_fields
+  min: specializations_translations_aggregated_fields
+  sum: specializations_translations_aggregated_fields
+  sumDistinct: specializations_translations_aggregated_fields
+}
+
+type specializations_translations_aggregated_count {
+  id: Int
+  language: Int
+  name: Int
+  object: Int
+}
+
+type specializations_translations_aggregated_fields {
+  id: Float
+}
+
+input specializations_translations_filter {
+  _and: [specializations_translations_filter]
+  _or: [specializations_translations_filter]
+  id: number_filter_operators
+  language: languages_filter
+  name: string_filter_operators
+  object: specializations_filter
+}
+
+type specializations_translations_mutated {
+  data: specializations_translations
+  event: EventEnum
+  key: ID!
+}
+
+input string_filter_operators {
+  _contains: String
+  _empty: Boolean
+  _ends_with: String
+  _eq: String
+  _icontains: String
+  _iends_with: String
+  _in: [String]
+  _istarts_with: String
+  _ncontains: String
+  _nempty: Boolean
+  _nends_with: String
+  _neq: String
+  _niends_with: String
+  _nin: [String]
+  _nistarts_with: String
+  _nnull: Boolean
+  _nstarts_with: String
+  _null: Boolean
+  _starts_with: String
+}
+
+type themes {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  name: String
+  partners(filter: themes_partners_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [themes_partners]
+  partners_func: count_functions
+  slug: String
+  translations(filter: themes_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [themes_translations]
+  translations_func: count_functions
+}
+
+type themes_aggregated {
+  count: themes_aggregated_count
+  countAll: Int
+  countDistinct: themes_aggregated_count
+  group: JSON
+}
+
+type themes_aggregated_count {
+  date_created: Int
+  date_updated: Int
+  id: Int
+  name: Int
+  partners: Int
+  slug: Int
+  translations: Int
+}
+
+input themes_filter {
+  _and: [themes_filter]
+  _or: [themes_filter]
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  id: string_filter_operators
+  name: string_filter_operators
+  partners: themes_partners_filter
+  partners_func: count_function_filter_operators
+  slug: string_filter_operators
+  translations: themes_translations_filter
+  translations_func: count_function_filter_operators
+}
+
+type themes_mutated {
+  data: themes
+  event: EventEnum
+  key: ID!
+}
+
+type themes_partners {
+  id: ID!
+  partner(filter: partners_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): partners
+  theme(filter: themes_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): themes
+  web(filter: webs_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): webs
+}
+
+type themes_partners_aggregated {
+  count: themes_partners_aggregated_count
+  countAll: Int
+  countDistinct: themes_partners_aggregated_count
+  group: JSON
+}
+
+type themes_partners_aggregated_count {
+  id: Int
+  partner: Int
+  theme: Int
+  web: Int
+}
+
+input themes_partners_filter {
+  _and: [themes_partners_filter]
+  _or: [themes_partners_filter]
+  id: string_filter_operators
+  partner: partners_filter
+  theme: themes_filter
+  web: webs_filter
+}
+
+type themes_partners_mutated {
+  data: themes_partners
+  event: EventEnum
+  key: ID!
+}
+
+type themes_translations {
+  id: ID!
+  language(filter: languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): languages
+  name: String
+  object(filter: themes_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): themes
+  partners(filter: themes_translations_partners_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [themes_translations_partners]
+  partners_func: count_functions
+}
+
+type themes_translations_aggregated {
+  avg: themes_translations_aggregated_fields
+  avgDistinct: themes_translations_aggregated_fields
+  count: themes_translations_aggregated_count
+  countAll: Int
+  countDistinct: themes_translations_aggregated_count
+  group: JSON
+  max: themes_translations_aggregated_fields
+  min: themes_translations_aggregated_fields
+  sum: themes_translations_aggregated_fields
+  sumDistinct: themes_translations_aggregated_fields
+}
+
+type themes_translations_aggregated_count {
+  id: Int
+  language: Int
+  name: Int
+  object: Int
+  partners: Int
+}
+
+type themes_translations_aggregated_fields {
+  id: Float
+}
+
+input themes_translations_filter {
+  _and: [themes_translations_filter]
+  _or: [themes_translations_filter]
+  id: number_filter_operators
+  language: languages_filter
+  name: string_filter_operators
+  object: themes_filter
+  partners: themes_translations_partners_filter
+  partners_func: count_function_filter_operators
+}
+
+type themes_translations_mutated {
+  data: themes_translations
+  event: EventEnum
+  key: ID!
+}
+
+type themes_translations_partners {
+  id: ID!
+  partner(filter: partners_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): partners
+  theme(filter: themes_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): themes_translations
+}
+
+type themes_translations_partners_aggregated {
+  avg: themes_translations_partners_aggregated_fields
+  avgDistinct: themes_translations_partners_aggregated_fields
+  count: themes_translations_partners_aggregated_count
+  countAll: Int
+  countDistinct: themes_translations_partners_aggregated_count
+  group: JSON
+  max: themes_translations_partners_aggregated_fields
+  min: themes_translations_partners_aggregated_fields
+  sum: themes_translations_partners_aggregated_fields
+  sumDistinct: themes_translations_partners_aggregated_fields
+}
+
+type themes_translations_partners_aggregated_count {
+  id: Int
+  partner: Int
+  theme: Int
+}
+
+type themes_translations_partners_aggregated_fields {
+  id: Float
+  theme: Float
+}
+
+input themes_translations_partners_filter {
+  _and: [themes_translations_partners_filter]
+  _or: [themes_translations_partners_filter]
+  id: number_filter_operators
+  partner: partners_filter
+  theme: themes_translations_filter
+}
+
+type themes_translations_partners_mutated {
+  data: themes_translations_partners
+  event: EventEnum
+  key: ID!
+}
+
+type types {
+  code: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  name: String!
+  sort: Int
+  translations(filter: types_translations_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [types_translations]
+  translations_func: count_functions
+}
+
+type types_aggregated {
+  avg: types_aggregated_fields
+  avgDistinct: types_aggregated_fields
+  count: types_aggregated_count
+  countAll: Int
+  countDistinct: types_aggregated_count
+  group: JSON
+  max: types_aggregated_fields
+  min: types_aggregated_fields
+  sum: types_aggregated_fields
+  sumDistinct: types_aggregated_fields
+}
+
+type types_aggregated_count {
+  code: Int
+  date_created: Int
+  date_updated: Int
+  id: Int
+  name: Int
+  sort: Int
+  translations: Int
+}
+
+type types_aggregated_fields {
+  sort: Float
+}
+
+input types_filter {
+  _and: [types_filter]
+  _or: [types_filter]
+  code: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  id: string_filter_operators
+  name: string_filter_operators
+  sort: number_filter_operators
+  translations: types_translations_filter
+  translations_func: count_function_filter_operators
+}
+
+type types_mutated {
+  data: types
+  event: EventEnum
+  key: ID!
+}
+
+type types_translations {
+  id: ID!
+  language(filter: languages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): languages
+  name: String
+  object(filter: types_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): types
+}
+
+type types_translations_aggregated {
+  avg: types_translations_aggregated_fields
+  avgDistinct: types_translations_aggregated_fields
+  count: types_translations_aggregated_count
+  countAll: Int
+  countDistinct: types_translations_aggregated_count
+  group: JSON
+  max: types_translations_aggregated_fields
+  min: types_translations_aggregated_fields
+  sum: types_translations_aggregated_fields
+  sumDistinct: types_translations_aggregated_fields
+}
+
+type types_translations_aggregated_count {
+  id: Int
+  language: Int
+  name: Int
+  object: Int
+}
+
+type types_translations_aggregated_fields {
+  id: Float
+}
+
+input types_translations_filter {
+  _and: [types_translations_filter]
+  _or: [types_translations_filter]
+  id: number_filter_operators
+  language: languages_filter
+  name: string_filter_operators
+  object: types_filter
+}
+
+type types_translations_mutated {
+  data: types_translations
+  event: EventEnum
+  key: ID!
+}
+
+type version_contents {
+  children: JSON
+  children_func: count_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  feedbacks: String
+  feedbacks_func: count_functions
+  id: ID!
+  issue: String
+  labels: JSON
+  labels_func: count_functions
+  language: JSON
+  languages: JSON
+  languages_func: count_functions
+  parent: JSON
+  partner: JSON
+  public_from: Date
+  public_from_func: datetime_functions
+  public_till: Date
+  public_till_func: datetime_functions
+  section: JSON
+  sections: JSON
+  sections_func: count_functions
+  specializations: JSON
+  specializations_func: count_functions
+  status: String
+  theme: JSON
+  translations: JSON
+  translations_func: count_functions
+  type: JSON
+  user_updated: String
+  users: JSON
+  users_func: count_functions
+  web: JSON
+  webs: JSON
+  webs_func: count_functions
+}
+
+type version_contents_labels {
+  content: JSON
+  id: ID!
+  label: JSON
+}
+
+type version_contents_languages {
+  content: JSON
+  id: ID!
+  language: JSON
+}
+
+type version_contents_sections {
+  content: JSON
+  id: ID!
+  section: JSON
+}
+
+type version_contents_specializations {
+  content: JSON
+  id: ID!
+  specialization: JSON
+}
+
+type version_contents_translations {
+  content: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  image: JSON
+  language: JSON
+  name: String!
+  object: JSON
+  perex: String
+  slug: String
+}
+
+type version_contents_users {
+  content: JSON
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  sort: Int
+  status: String
+  user_created: String
+  user_updated: String
+}
+
+type version_contents_webs {
+  content: JSON
+  id: ID!
+  web: JSON
+}
+
+type version_countries {
+  code: ID!
+  code3: String!
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  name: String!
+}
+
+type version_issues {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  issue: String
+  journal: JSON
+  options: JSON
+  options_func: count_functions
+  translations: JSON
+  translations_func: count_functions
+  volume: String
+  year: Int
+}
+
+type version_issues_translations {
+  id: ID!
+  language: JSON
+  object: JSON
+}
+
+type version_journals {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  issn: String
+  language: JSON
+  languages: JSON
+  languages_func: count_functions
+  options: JSON
+  options_func: count_functions
+  pubmed_name: String
+  shortcut: String!
+  status: String
+  translations: JSON
+  translations_func: count_functions
+}
+
+type version_journals_languages {
+  id: ID!
+  language: JSON
+  object: JSON
+}
+
+type version_journals_translations {
+  id: ID!
+  language: JSON
+  name: String
+  object: JSON
+  slug: String
+}
+
+type version_labels {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  name: String
+  translations: JSON
+  translations_func: count_functions
+}
+
+type version_labels_translations {
+  id: ID!
+  language: JSON
+  name: String
+  object: JSON
+}
+
+type version_languages {
+  code: ID!
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  direction: String
+  name: String
+}
+
+type version_pages {
+  code: String!
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  language: JSON
+  layout: String
+  name: String!
+  path: String!
+  web: JSON
+}
+
+type version_partners {
+  banner: JSON
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  logo: JSON
+  name: String
+  url: String
+}
+
+type version_sections {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  name: String
+  translations: JSON
+  translations_func: count_functions
+}
+
+type version_sections_translations {
+  id: ID!
+  language: JSON
+  name: String
+  object: JSON
+}
+
+type version_slots {
+  adm_id: String!
+  adm_slot: String!
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  dimensions: JSON
+  dimensions_func: count_functions
+  id: ID!
+}
+
+type version_specializations {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  group: String
+  id: ID!
+  name: String!
+  translations: JSON
+  translations_func: count_functions
+}
+
+type version_specializations_translations {
+  id: ID!
+  language: JSON
+  name: String
+  object: JSON
+}
+
+type version_themes {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  name: String
+  partners: JSON
+  partners_func: count_functions
+  slug: String
+  translations: JSON
+  translations_func: count_functions
+}
+
+type version_themes_partners {
+  id: ID!
+  partner: JSON
+  theme: JSON
+  web: JSON
+}
+
+type version_themes_translations {
+  id: ID!
+  language: JSON
+  name: String
+  object: JSON
+  partners: JSON
+  partners_func: count_functions
+}
+
+type version_themes_translations_partners {
+  id: ID!
+  partner: JSON
+  theme: JSON
+}
+
+type version_types {
+  code: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  name: String!
+  sort: Int
+  translations: JSON
+  translations_func: count_functions
+}
+
+type version_types_translations {
+  id: ID!
+  language: JSON
+  name: String
+  object: JSON
+}
+
+type version_webs {
+  color_primary: String
+  color_secondary: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  default_domain: String!
+  default_email: String!
+  domains: JSON
+  domains_func: count_functions
+  id: ID!
+  name: String!
+  pages: JSON
+  pages_func: count_functions
+  shortcut: String
+}
+
+type version_webs_domains {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  domain: String
+  id: ID!
+  sort: Int
+  web: JSON
+}
+
+type webs {
+  color_primary: String
+  color_secondary: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  default_domain: String!
+  default_email: String!
+  domains(filter: webs_domains_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [webs_domains]
+  domains_func: count_functions
+  id: ID!
+  name: String!
+  pages(filter: pages_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [pages]
+  pages_func: count_functions
+  shortcut: String
+}
+
+type webs_aggregated {
+  count: webs_aggregated_count
+  countAll: Int
+  countDistinct: webs_aggregated_count
+  group: JSON
+}
+
+type webs_aggregated_count {
+  color_primary: Int
+  color_secondary: Int
+  date_created: Int
+  date_updated: Int
+  default_domain: Int
+  default_email: Int
+  domains: Int
+  id: Int
+  name: Int
+  pages: Int
+  shortcut: Int
+}
+
+type webs_domains {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  domain: String
+  id: ID!
+  sort: Int
+  web(filter: webs_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): webs
+}
+
+type webs_domains_aggregated {
+  avg: webs_domains_aggregated_fields
+  avgDistinct: webs_domains_aggregated_fields
+  count: webs_domains_aggregated_count
+  countAll: Int
+  countDistinct: webs_domains_aggregated_count
+  group: JSON
+  max: webs_domains_aggregated_fields
+  min: webs_domains_aggregated_fields
+  sum: webs_domains_aggregated_fields
+  sumDistinct: webs_domains_aggregated_fields
+}
+
+type webs_domains_aggregated_count {
+  date_created: Int
+  date_updated: Int
+  domain: Int
+  id: Int
+  sort: Int
+  web: Int
+}
+
+type webs_domains_aggregated_fields {
+  sort: Float
+}
+
+input webs_domains_filter {
+  _and: [webs_domains_filter]
+  _or: [webs_domains_filter]
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  domain: string_filter_operators
+  id: string_filter_operators
+  sort: number_filter_operators
+  web: webs_filter
+}
+
+type webs_domains_mutated {
+  data: webs_domains
+  event: EventEnum
+  key: ID!
+}
+
+input webs_filter {
+  _and: [webs_filter]
+  _or: [webs_filter]
+  color_primary: string_filter_operators
+  color_secondary: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  default_domain: string_filter_operators
+  default_email: string_filter_operators
+  domains: webs_domains_filter
+  domains_func: count_function_filter_operators
+  id: string_filter_operators
+  name: string_filter_operators
+  pages: pages_filter
+  pages_func: count_function_filter_operators
+  shortcut: string_filter_operators
+}
+
+type webs_mutated {
+  data: webs
+  event: EventEnum
+  key: ID!
+}
