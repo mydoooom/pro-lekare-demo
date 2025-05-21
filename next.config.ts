@@ -28,6 +28,16 @@ const nextConfig: NextConfig = {
 
     return config
   },
+  reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/articles',
+        permanent: true,
+      },
+    ];
+  },
 
 };
 
