@@ -1,7 +1,6 @@
 import { Tags } from '@/components/articles/articles-item/tags'
-import { Contents, ContentsQuery } from '@/graphql/graphql'
+import { ContentsQuery } from '@/graphql/graphql'
 import Link from 'next/link'
-import { QueryResultEntity } from '../../../../types/utils'
 
 interface ArticlesItemProps {
   article: ContentsQuery['contents'][number]
