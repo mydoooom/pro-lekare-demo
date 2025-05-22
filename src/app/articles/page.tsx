@@ -23,6 +23,7 @@ export default async function ArticlesPage () {
   return (
     <>
       <HydrationBoundary state={dehydrate(queryClient)}>
+        <p className='text-xs text-gray-500 mb-4'>proLékaře</p>
         <h2 className='uppercase text-3xl font-bold mb-4'>Články</h2>
         <hr/>
         <ArticlesList/>

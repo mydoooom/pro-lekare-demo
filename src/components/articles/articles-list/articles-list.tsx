@@ -2,6 +2,7 @@
 
 import { ArticlesQuery } from '@/api/queries/ArticlesQuery'
 import { ArticlesItem } from '@/components/articles/articles-item/articles-item'
+import { Button } from '@/components/ui/button'
 import { ContentsQuery } from '@/graphql/graphql'
 import request from '@/graphql/request'
 import { useInfiniteQuery } from '@tanstack/react-query'
@@ -36,20 +37,23 @@ export function ArticlesList () {
 
   return (
     <>
-      {allArticles.map(article => (
+      {allArticles.map((article, index) => (
         <Fragment key={article.id}>
-          <ArticlesItem article={article}/>
+          <ArticlesItem article={article} main={index === 0}/>
           <hr/>
         </Fragment>
       ))}
 
       {hasNextPage && (
-        <button
-          onClick={() => fetchNextPage()}
-          disabled={isFetchingNextPage}
-        >
-          {isFetchingNextPage ? 'Loading...' : 'Load more'}
-        </button>
+        <div className='flex justify-center my-4'>
+          <Button
+            variant='outlined'
+            onClick={() => fetchNextPage()}
+            disabled={isFetchingNextPage}
+          >
+            {isFetchingNextPage ? 'Načítání...' : 'Načíst další stránky'}
+          </Button>
+        </div>
       )}
     </>
   )

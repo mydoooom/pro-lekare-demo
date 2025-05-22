@@ -1,6 +1,5 @@
 import Providers from '@/app/providers'
 import { Header } from '@/components/ui'
-import { MenuBar } from '@/components/ui'
 import type { Metadata } from "next";
 import {  Source_Sans_3, Lora } from "next/font/google";
 import "./globals.css";
@@ -28,11 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="cs=">
-      <body className={`${sourceSans3.variable} ${geistMono.variable} antialiased`}>
+    <body className={`${sourceSans3.variable} ${geistMono.variable} antialiased mt-40`}>
         <Providers>
           <Header/>
-          <hr className="border-neutral-400"/>
-          <MenuBar/>
           {children}
         </Providers>
       </body>
