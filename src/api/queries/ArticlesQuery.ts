@@ -27,6 +27,14 @@ export const ArticlesQuery = graphql(/* GraphQL */ `
                 name
                 slug
                 perex
+                date_created
+                image {
+                    id
+                    folder
+                    filename_disk
+                    width
+                    height
+                }
             }
             web(filter: {shortcut: {_eq: "PL"}}) {
                 shortcut
