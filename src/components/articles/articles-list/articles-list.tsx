@@ -19,6 +19,13 @@ export function ArticlesList () {
     })
   })
 
+  useQuery({
+    queryKey: ['articles'],
+    queryFn: () => request<ContentsQuery>(ArticlesQuery, {
+      language: "cs-CZ"
+    }),
+  })
+
   if (isLoading) return <p>Loading...</p>
   if (isError) return <p>Error: {error.message}</p>
   if (!articles) return <p>Something bad happened </p>
@@ -26,10 +33,10 @@ export function ArticlesList () {
   return (
     <>
       {articles.contents.map(article => (
-       <Fragment key={article.id}>
-         <ArticlesItem article={article}/>
-         <hr/>
-       </Fragment>
+        <Fragment key={article.id}>
+          <ArticlesItem article={article}/>
+          <hr/>
+        </Fragment>
       ))}
     </>
   )
