@@ -1,6 +1,7 @@
 "use client"
 
 import { ArticlesQuery } from '@/api/queries/ArticlesQuery'
+import { LIMIT } from '@/app/articles/utils/constants'
 import { ArticlesItem } from '@/components/articles/articles-item/articles-item'
 import { Button } from '@/components/ui/button'
 import { ContentsQuery } from '@/graphql/graphql'
@@ -20,11 +21,11 @@ export function ArticlesList () {
   } = useInfiniteQuery({
     queryKey: ['articles'],
     queryFn: ({ pageParam = 1 }) => request<ContentsQuery>(ArticlesQuery, {
-      limit: 6,
+      limit: LIMIT,
       page: pageParam
     }),
     getNextPageParam: (lastPage, allPages) => {
-      return lastPage.contents.length === 5 ? allPages.length + 1 : undefined
+      return lastPage.contents.length === LIMIT ? allPages.length + 1 : undefined
     },
     initialPageParam: 1
   })

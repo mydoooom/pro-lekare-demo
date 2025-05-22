@@ -1,3 +1,4 @@
+import { LIMIT } from '@/app/articles/utils/constants'
 import { ArticlesList } from '@/components/articles'
 import { ContentsQuery } from '@/graphql/graphql'
 import request from '@/graphql/request'
@@ -11,11 +12,11 @@ export default async function ArticlesPage () {
   await queryClient.prefetchInfiniteQuery({
     queryKey: ['articles'],
     queryFn: ({ pageParam = 1 }) => request<ContentsQuery>(ArticlesQuery, {
-      limit: 5,
+      limit: LIMIT,
       page: pageParam
     }),
     getNextPageParam: (lastPage: { contents: string | any[] }, allPages: string | any[]) => {
-      return lastPage.contents.length === 5 ? allPages.length + 1 : undefined
+      return lastPage.contents.length === LIMIT ? allPages.length + 1 : undefined
     },
     initialPageParam: 1
   })
