@@ -8,13 +8,17 @@ import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 export default async function ArticlesPage () {
   const queryClient = getQueryClient()
 
-  await queryClient.prefetchQuery({
-    queryKey:['articles'],
-    queryFn: () => request<ContentsQuery>(ArticlesQuery, {
-      language: "cs-CZ"
-    })
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: ['articles'],
+    queryFn: ({ pageParam = 1 }) => request<ContentsQuery>(ArticlesQuery, {
+      limit: 5,
+      page: pageParam
+    }),
+    getNextPageParam: (lastPage: { contents: string | any[] }, allPages: string | any[]) => {
+      return lastPage.contents.length === 5 ? allPages.length + 1 : undefined
+    },
+    initialPageParam: 1
   })
-
 
   return (
     <>

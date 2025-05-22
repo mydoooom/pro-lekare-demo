@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
-import  User from '@/assets/logos/user.svg'
-import Mail from '@/assets/logos/mail.svg'
+import  User from '@/assets/icons/user.svg'
+import Mail from '@/assets/icons/mail.svg'
 import Link from 'next/link'
 
 export function Header() {
