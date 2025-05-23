@@ -92,8 +92,8 @@ export function Header () {
           </div>
         </div>
         <hr/>
-        <div className={`${isMenuVisible ? 'block' : 'hidden'} p-4 border-b border-neutral-400 shadow`}>
-          <ul className='flex flex-col gap-4 items-end my-4'>
+        <div className={`${isMenuVisible ? 'block' : 'hidden'} border-b border-neutral-400 shadow`}>
+          <ul className='container flex flex-col gap-4 items-end my-4 p-4 mx-auto'>
             {menuItems.map(({ label, href }, index) => (
               <li key={index} className='cursor-pointer' onClick={() => setIsMenuVisible(false)}>
                 <Link href={href} className={`${pathname === href ? 'text-red-800' : ''}`}>{label}</Link>
@@ -101,7 +101,7 @@ export function Header () {
             ))}
           </ul>
           <hr/>
-          <div className='flex justify-end my-4'>
+          <div className='container flex justify-end my-4 mx-auto p-4'>
             <HeaderButtons/>
           </div>
         </div>
