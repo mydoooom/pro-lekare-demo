@@ -35,8 +35,8 @@ export function Article ({ article }: ArticleProps) {
         <Image
           className={`w-full aspect-3/2 object-cover mb-6`}
           src={`https://directus.devmed.cz/assets/${image.id}`}
-          width={image.width}
-          height={image.height}
+          width={image.width || 0}
+          height={image.height || 0}
           alt={'obrazek'}
         />
       }
