@@ -39,9 +39,9 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    remotePatterns: [new URL('https://directus.devmed.cz/assets/**')],
     unoptimized: true,
-  }
-
+  },
 };
 
 export default nextConfig;

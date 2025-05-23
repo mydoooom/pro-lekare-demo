@@ -1,8 +1,18 @@
 import { graphql } from '@/graphql'
 
 export const ArticlesQuery = graphql(/* GraphQL */ `
-    query Contents ($language: String!) {
-        contents(filter: { web: { id: { _null: false } } }) {
+    query Contents(
+        $language: String = "cs-CZ",
+        $limit: Int = null,
+        $page: Int = null,
+        $sort: [String] = ["-public_from"]
+    ) {
+        contents(
+            filter: {web: {id: {_null: false}}}
+            limit: $limit
+            page: $page
+            sort: $sort
+        ) {
             id
             labels {
                 label {
@@ -10,17 +20,27 @@ export const ArticlesQuery = graphql(/* GraphQL */ `
                     id
                 }
             }
-            translations(filter: { language: { code: { _eq: $language } } }) {
+            translations(filter: {language: {code: {_eq: $language}}}) {
                 language {
                     code
                 }
                 name
                 slug
                 perex
+                date_created
+                image {
+                    id
+                    folder
+                    filename_disk
+                    width
+                    height
+                }
             }
-            web(filter: { shortcut: { _eq: "PL" } }) {
+            web(filter: {shortcut: {_eq: "PL"}}) {
                 shortcut
             }
+            public_from
+            public_till
         }
     }
 `)

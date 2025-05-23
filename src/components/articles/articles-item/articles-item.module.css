@@ -1,0 +1,22 @@
+.tags {
+    grid-area: tags;
+}
+
+.image {
+    grid-area: image;
+}
+
+.title-and-perex {
+    grid-area: title-and-perex;
+}
+
+
+.article-item-mobile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "tags tags"
+    "image title-and-perex"
+;
+}

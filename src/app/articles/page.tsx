@@ -1,3 +1,4 @@
+import { LIMIT } from '@/app/articles/utils/constants'
 import { ArticlesList } from '@/components/articles'
 import { ContentsQuery } from '@/graphql/graphql'
 import request from '@/graphql/request'
@@ -8,17 +9,24 @@ import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 export default async function ArticlesPage () {
   const queryClient = getQueryClient()
 
-  await queryClient.prefetchQuery({
-    queryKey:['articles'],
-    queryFn: () => request<ContentsQuery>(ArticlesQuery, {
-      language: "cs-CZ"
-    })
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: ['articles'],
+    queryFn: ({ pageParam = 1 }) => request<ContentsQuery>(ArticlesQuery, {
+      limit: LIMIT,
+      page: pageParam
+    }),
+    getNextPageParam: (lastPage: { contents: string | any[] }, allPages: string | any[]) => {
+      return lastPage.contents.length === LIMIT ? allPages.length + 1 : undefined
+    },
+    initialPageParam: 1
   })
-
 
   return (
     <>
       <HydrationBoundary state={dehydrate(queryClient)}>
+        <p className='text-xs text-gray-500 mb-4'>proLékaře</p>
+        <h2 className='uppercase text-3xl font-bold mb-4'>Články</h2>
+        <hr/>
         <ArticlesList/>
       </HydrationBoundary>
     </>
