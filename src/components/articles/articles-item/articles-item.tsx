@@ -1,4 +1,4 @@
-import { Tags } from '@/components/articles/articles-item/tags'
+import { Tags } from '@/components/ui/tags'
 import { ContentsQuery } from '@/graphql/graphql'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -27,7 +27,7 @@ export function ArticlesItem ({ main, article }: ArticlesItemProps) {
     return (
       <div className='my-5'>
         <Link href={`/articles/${slug}`}>
-          <h3 className='font-serif font-extrabold text-3xl mb-4'>{articleTranslation?.name}</h3>
+          <h3 className='font-serif font-extrabold text-3xl mb-4 hover:underline'>{articleTranslation?.name}</h3>
         </Link>
         <div className={`${main ? 'grid grid-cols-1' : 'grid grid-cols-[1fr_2fr]'} gap-4`}>
           <Image
@@ -61,7 +61,7 @@ export function ArticlesItem ({ main, article }: ArticlesItemProps) {
         />
         <div>
           <Link href={`/articles/${slug}`}>
-            <h3 className='font-serif font-extrabold text-2xl mb-4'>{articleTranslation?.name}</h3>
+            <h3 className='font-serif font-extrabold text-2xl mb-4 hover:underline'>{articleTranslation?.name}</h3>
           </Link>
           <div className=' hidden md:flex items-center mb-4'>
             <p>Téma: </p>

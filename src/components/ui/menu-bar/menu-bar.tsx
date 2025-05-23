@@ -17,7 +17,7 @@ export function MenuBar ({ items }: { items: MenuItem[] }) {
               <li key={index} className='h-full relative'>
                 <Link
                   href={href}
-                  className={`h-full grid place-items-center  ${pathname !== href ? 'text-gray-500' : ''}`}
+                  className={`h-full grid place-items-center ${pathname !== href ? 'text-gray-500' : ''} hover:text-gray-900`}
                 >
                   {label}
                 </Link>

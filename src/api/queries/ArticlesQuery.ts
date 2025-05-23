@@ -30,8 +30,6 @@ export const ArticlesQuery = graphql(/* GraphQL */ `
                 date_created
                 image {
                     id
-                    folder
-                    filename_disk
                     width
                     height
                 }

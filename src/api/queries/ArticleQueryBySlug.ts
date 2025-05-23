@@ -23,6 +23,12 @@ export const ArticleQueryBySlug = graphql(`
                 slug
                 perex
                 content
+                date_created
+                image {
+                    id
+                    width
+                    height
+                }
             }
             web {
                 shortcut
