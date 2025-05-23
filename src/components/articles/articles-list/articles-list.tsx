@@ -52,7 +52,7 @@ export function ArticlesList () {
             onClick={() => fetchNextPage()}
             disabled={isFetchingNextPage}
           >
-            {isFetchingNextPage ? 'Načítání...' : 'Načíst další stránky'}
+            {isFetchingNextPage ? 'Načítání...' : 'Načíst další články'}
           </Button>
         </div>
       )}
