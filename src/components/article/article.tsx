@@ -26,9 +26,9 @@ export function Article ({ article }: ArticleProps) {
       }
       <h2 className='font-serif font-extrabold text-4xl mb-4'>{articleTranslation?.name}</h2>
       <div className='flex items-center col-start-1 col-end-3 mb-6'>
-        <p>Téma: </p>
+        <span>Téma: </span>
         <span className='h-4 w-px bg-neutral-700 mx-3'></span>
-        <p>{formattedDate}</p>
+        <span>{formattedDate}</span>
       </div>
       <hr className='mb-6'/>
       {image &&

@@ -64,15 +64,15 @@ export function ArticlesItem ({ main, article }: ArticlesItemProps) {
             <h3 className='font-serif font-extrabold text-2xl mb-4 hover:underline'>{articleTranslation?.name}</h3>
           </Link>
           <div className=' hidden md:flex items-center mb-4'>
-            <p>Téma: </p>
+            <span>Téma: </span>
             <span className='h-4 w-px bg-neutral-700 mx-3'></span>
-            <p>{formattedDate}</p>
+            <span>{formattedDate}</span>
           </div>
         </div>
         <div className='flex items-center col-start-1 col-end-3 md:hidden'>
-          <p>Téma: </p>
+          <span>Téma: </span>
           <span className='h-4 w-px bg-neutral-700 mx-3'></span>
-          <p>{formattedDate}</p>
+          <span>{formattedDate}</span>
         </div>
       </div>
       <p className='hidden md:block'>{articleTranslation?.perex}</p>

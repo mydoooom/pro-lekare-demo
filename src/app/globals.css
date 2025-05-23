@@ -21,3 +21,12 @@ body {
 hr {
   border-color: var(--color-neutral-400)
 }
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
