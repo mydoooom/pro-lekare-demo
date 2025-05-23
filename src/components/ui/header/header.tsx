@@ -2,7 +2,6 @@
 
 import { MenuBar } from '@/components/ui'
 import { Button } from '@/components/ui/button'
-import { useView, Breakpoints } from '@/utils/useView'
 import Image from 'next/image'
 import User from '@/assets/icons/user.svg'
 import Mail from '@/assets/icons/mail.svg'
@@ -64,7 +63,6 @@ const HeaderButtons = () => (
 
 export function Header () {
   const pathname = usePathname();
-  const isMd = useView(Breakpoints.LG)
   const [isMenuVisible, setIsMenuVisible] = useState(false)
 
   return (
@@ -81,18 +79,17 @@ export function Header () {
               />
             </Link>
           </div>
-          {isMd ? (
+          <div className='hidden lg:block'>
             <HeaderButtons/>
-          ) : (
-            <>
-              <Button variant='outlined' className={'p-[16px] cursor-pointer'}
-                      onClick={() => setIsMenuVisible(!isMenuVisible)}>
+          </div>
+          <div className='block lg:hidden'>
+            <Button variant='outlined' className={'p-[16px] cursor-pointer'}
+                    onClick={() => setIsMenuVisible(!isMenuVisible)}>
                 <span className='transform scale-125'>
                   <Hamburger/>
                 </span>
-              </Button>
-            </>
-          )}
+            </Button>
+          </div>
         </div>
         <hr/>
         <div className={`${isMenuVisible ? 'block' : 'hidden'} p-4 border-b border-neutral-400 shadow`}>
@@ -108,7 +105,7 @@ export function Header () {
             <HeaderButtons/>
           </div>
         </div>
-        {!isMenuVisible && <MenuBar items={isMd ? menuItems : undefined}/>}
+        {!isMenuVisible && <MenuBar items={menuItems}/>}
       </header>
 
     </>
