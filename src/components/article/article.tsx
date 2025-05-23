@@ -24,7 +24,7 @@ export function Article ({ article }: ArticleProps) {
       {article.labels &&
         <Tags tags={article.labels.map((label) => label?.label?.name)}/>
       }
-      <h2 className='font-serif font-extrabold text-4xl mb-4'>{articleTranslation?.name}</h2>
+      <h2 className='font-serif font-extrabold !text-4xl mb-4'>{articleTranslation?.name}</h2>
       <div className='flex items-center col-start-1 col-end-3 mb-6'>
         <span>Téma: </span>
         <span className='h-4 w-px bg-neutral-700 mx-3'></span>
