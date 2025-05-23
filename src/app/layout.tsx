@@ -1,5 +1,6 @@
 import Providers from '@/app/providers'
 import { Header } from '@/components/ui'
+import { Footer } from '@/components/ui/footer'
 import type { Metadata } from "next";
 import {  Source_Sans_3, Lora } from "next/font/google";
 import "./globals.css";
@@ -31,6 +32,7 @@ export default function RootLayout({
         <Providers>
           <Header/>
           {children}
+          <Footer/>
         </Providers>
       </body>
     </html>
