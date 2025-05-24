@@ -20,7 +20,7 @@ export function Article ({ article }: ArticleProps) {
     .format(new Date(articleTranslation?.date_created))
 
   return (
-    <>
+    <article>
       {article.labels &&
         <Tags tags={article.labels.map((label) => label?.label?.name)}/>
       }
@@ -45,6 +45,6 @@ export function Article ({ article }: ArticleProps) {
       <div>
         {articleTranslation?.content && parse(articleTranslation.content)}
       </div>
-    </>
+    </article>
   )
 }

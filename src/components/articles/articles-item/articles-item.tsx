@@ -25,7 +25,7 @@ export function ArticlesItem ({ main, article }: ArticlesItemProps) {
 
   if (main) {
     return (
-      <div className='my-5'>
+      <article className='my-5'>
         <Link href={`/articles/${slug}`}>
           <h3 className='font-serif font-extrabold text-3xl mb-4 hover:underline'>{articleTranslation?.name}</h3>
         </Link>
@@ -41,12 +41,12 @@ export function ArticlesItem ({ main, article }: ArticlesItemProps) {
           <p>{formattedDate}</p>
           <p>{articleTranslation?.perex}</p>
         </div>
-      </div>
+      </article>
     )
   }
 
   return (
-    <div className='my-5'>
+    <article className='my-5'>
       <div className='grid md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_3fr] gap-4'>
         <div></div>
         <Tags tags={tags}/>
@@ -77,6 +77,6 @@ export function ArticlesItem ({ main, article }: ArticlesItemProps) {
       </div>
       <p className='hidden md:block'>{articleTranslation?.perex}</p>
 
-    </div>
+    </article>
   )
 }

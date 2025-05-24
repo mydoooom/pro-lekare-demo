@@ -28,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="cs=">
-    <body className={`${sourceSans3.variable} ${geistMono.variable} antialiased mt-40`}>
+    <body className={`${sourceSans3.variable} ${geistMono.variable} antialiased mt-48`}>
         <Providers>
           <Header/>
           {children}
